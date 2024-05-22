@@ -28,7 +28,9 @@ class SimItem:
                 self.SimMatrix = pickle.load(f)
             print("Initialization Finish")
         else:
-            print("Run FindSignature and CompareSignature first to build matrix")
+            print("Run FindSignature and CompareSignature first to build matrix...")
+            self.FindSignature()
+            self.CompareSignature()
 
     def pickRandomCoeffs(self):
         # Create a list of 'k' random values.

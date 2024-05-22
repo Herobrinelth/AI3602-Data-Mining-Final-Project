@@ -139,7 +139,7 @@ class BagUserCluster:
                 reduced_mat = self.pca.transform(user_film)
                 cluster_labels = self.gm.predict(reduced_mat)
                 print("test ", cluster_labels[:100])
-                for idx, category in enumerate(cluster_labels):
+                for idx, category in tqdm(enumerate(cluster_labels)):
                     if str(idx+1) not in test_rating.keys():
                         continue
                     cluster = self.dict_address[category]
