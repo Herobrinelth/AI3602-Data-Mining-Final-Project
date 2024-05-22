@@ -39,7 +39,7 @@ ncf_config = {
     "batch_size": 2048,
     "kwargs": {
         'embed_size':128,
-        'hidden_nbs':[1024, 2048, 512],
+        'hidden_nbs':[2048, 2048, 1024],
         'dropout':0.1
     }
 }
