@@ -9,3 +9,6 @@ bash Scripts/UBCF.sh
 
 # Min Hash
 bash Scripts/SimilarItem.sh
+
+# Movie Based LSTM
+bash Scripts/LSTM.sh

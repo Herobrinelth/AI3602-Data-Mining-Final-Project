@@ -18,12 +18,15 @@ test_path = "dataset/test_set.dat"
 reduced_mat_path = 'Output/reduced_mat.pkl'
 EM_mu_sigma_alpha_path = 'Output/EM_mu_sigma_alpha.pkl'
 
-# recommend path
+# NCF path
 model_path = "Output/NCFmodel.pkl"
-
-# train path
 train_eer_path = "Output/train_error.pkl"
 test_eer_path = "Output/test_error.pkl"
+
+# LSTM path
+lstm_path = "Output/LSTM.pkl"
+train_eer_lstm = "Output/train_lstm.pkl"
+test_eer_lstm = "Output/test_lstm.pkl"
 
 # movie similaritem path
 movie_similarity_matrices_path = 'Output/MovieSimMat.pkl'
@@ -41,5 +44,17 @@ ncf_config = {
         'embed_size':128,
         'hidden_nbs':[1024, 4096, 1024],
         'dropout':0.1
+    }
+}
+
+# LSTM configuration
+lstm_config = {
+    "epoches": 60,
+    "lr": 1e-3,
+    "batch_size": 1024,
+    "kwargs": {
+        'embed_size':256,
+        'dropout':0.1,
+        'gru_layers':2
     }
 }
