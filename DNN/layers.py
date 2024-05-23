@@ -74,40 +74,7 @@ class My_MLP(nn.Module):
 
     def forward(self, data):
         return self.mlp(data)
-
-class FactorizationMachine(nn.Module):
-    '''
-    因子分解
-    '''
-    def __init__(self, reduce_sum=True):
-        super(FactorizationMachine, self).__init__()
-        self.reduce_sum = reduce_sum
-
-    def forward(self, data):
-        square_of_sum = torch.sum(data, dim=1) ** 2
-        sum_of_square = torch.sum(data ** 2, dim=1)
-        data = square_of_sum - sum_of_square
-        if self.reduce_sum:
-            data = torch.sum(data, dim=1, keepdim=True)
-        return 0.5 * data
-
-class CrossNet(nn.Module):
-    def __init__(self, input_dim, num_layers):
-        super(CrossNet, self).__init__()
-        self.num_layer = num_layers
-        self.w = nn.ModuleList([
-            nn.Linear(input_dim, 1, bias=False) for _ in range(num_layers)
-        ])
-        self.b = nn.ParameterList(
-            nn.Parameter(torch.zeros((input_dim, ))) for _ in range(num_layers)
-        )
-
-    def forward(self, x):
-        x0 = x
-        for i in range(self.num_layer):
-            xw = self.w[i](x)
-            x = x0*xw + self.b[i] + x
-        return x
+    
 
 class Poly_2(nn.Module):
     '''
