@@ -45,33 +45,7 @@ class Feature_Embedding_Sum(nn.Module):
         data = data + torch.tensor(self.offset, dtype=torch.long).unsqueeze(0).to(self.device)
         data = torch.sum(self.embedding(data), dim=1) + self.bias
         return data
-
-class MLP(nn.Module):
-    def __init__(self, input_dim, hidden_nbs, out_dim, last_act='sigmoid', drop_rate=0.2):
-        '''
-        :param input_dim: 输入层的神经元个数
-        :param hidden_nbs: 列表，存储的是各个隐藏层神经元的个数
-        :param out_dim: 输出层的维度
-        :param last_act: 输出层的激活函数 'sigmoid', 'softmax'
-        :param drop_rate:
-        '''
-        super(MLP, self).__init__()
-        layers = []
-        for nb in hidden_nbs:
-            layers.append(nn.Linear(input_dim, nb))
-            layers.append(nn.BatchNorm1d(nb))
-            layers.append(nn.ReLU())
-            layers.append(nn.Dropout(p=drop_rate))
-            input_dim = nb
-        layers.append(nn.Linear(input_dim, out_dim))
-        self.mlp = nn.Sequential(*layers)
-        if last_act == 'sigmoid':
-            self.mlp.add_module('sigmoid', nn.Sigmoid())
-        elif last_act == 'softmax':
-            self.mlp.add_module('softmax', nn.Softmax())
-
-    def forward(self, data):
-        return self.mlp(data)
+    
 
 class My_MLP(nn.Module):
     def __init__(self, device, input_dim, hidden_nbs, out_dim, last_act='sigmoid', drop_rate=0.2):
