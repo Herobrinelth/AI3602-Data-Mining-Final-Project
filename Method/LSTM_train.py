@@ -89,6 +89,8 @@ if __name__ == "__main__":
     loss_f = torch.nn.BCELoss()
     train_error = []
     test_error = []
+    best_auc = 0
+    count = 0
     for e in range(epoches):
         print("Training {} epoch of {}".format(e+1, epoches))
         train(model, dataloader_train, opt, criterion=loss_f, device=device, log_interval=100)
@@ -98,5 +100,13 @@ if __name__ == "__main__":
         print("Validating on test set")
         value_rmse, value_mae, value_auc = test(model, dataloader_test, device)
         test_error.append((value_rmse, value_mae, value_auc))
-    torch.save(model, Parameter.lstm_path)
+        if value_auc > best_auc:
+            torch.save(model, Parameter.lstm_path)
+            print("Best case updated, save to {}".format(Parameter.lstm_path))
+            best_auc = value_auc
+            continue
+        count += 1
+        if count == Parameter.early_stop:
+            print("Early stop at {} epoch of {}".format(e+1, epoches))
+            break
     Plot_errors(train_error, test_error, Parameter.output_root, 'train_LSTM.jpg', 'test_LSTM.jpg')
