@@ -49,7 +49,7 @@ ncf_config = {
 
 # LSTM configuration
 lstm_config = {
-    "epoches": 60,
+    "epoches": 75,
     "lr": 1e-3,
     "batch_size": 1024,
     "kwargs": {
