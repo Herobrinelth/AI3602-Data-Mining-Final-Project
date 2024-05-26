@@ -21,3 +21,4 @@
 
   * Activate all: `bash activate_all.sh` on bash.
   * If you want to activate algorithms separately, run `bash Scripts/{method.sh}` on bash.
+  * To change training configurations, please refer to `Tools/Parameter.py`.
