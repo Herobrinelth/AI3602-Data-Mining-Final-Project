@@ -63,7 +63,7 @@ if __name__ == "__main__":
         recall += (hit/100)
     with open(os.path.join(Parameter.output_root, "output_LSTM.txt"), "w") as file:
         with contextlib.redirect_stdout(file):
-            print(Parameter.model_path)
+            print(Parameter.lstm_path)
             print("acc cnt", accurate)
             print("accurate",accurate/len(test_rating.keys()))
             print("recall cnt", recall)
