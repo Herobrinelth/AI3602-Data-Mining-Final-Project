@@ -1,6 +1,4 @@
-import pandas as pd
 import numpy as np
-from torch.utils.data import Dataset
 from tqdm import tqdm
 from torch.utils.data import DataLoader
 import torch
@@ -13,6 +11,7 @@ parent_dir = os.path.dirname(current_dir)
 sys.path.append(parent_dir)
 from DNN.model import LSTM
 import Tools.Parameter as Parameter
+from Tools.Dataset import ML1m
  
 np.random.seed(0)
 torch.manual_seed(0)
@@ -25,39 +24,6 @@ def get_metrics(predict_vec, target_vec):
     value_mae = mae(predict_vec, target_vec)
     value_auc = roc_auc_score(target_vec, predict_vec)
     return value_rmse, value_mae, value_auc
-
-class ML1m(Dataset):
-    '''
-    加载movielens 1m的数据
-    '''
-    def __init__(self, data_path, sep='::', header=None):
-        '''
-        :param data_path: 评分文件
-        :param sep: 切割符
-        :param header: 是否有标题
-        '''
-        data = pd.read_csv(data_path, sep=sep, header=header, engine='python').to_numpy()[:, :3]
-        self.features = data[:, :2].astype(np.compat.long)-1
-        self.targets = self.__process_score(data[:, -1]).astype(np.float32)
-        self.feature_dims = np.max(self.features, axis=0)+1
-        self.user_field_idx = np.array((0,), dtype=np.compat.long)
-        self.item_field_idx = np.array((1,), dtype=np.compat.long)
-
-    def __getitem__(self, idx):
-        return self.features[idx], self.targets[idx]
-
-    def __len__(self):
-        return self.features.shape[0]
-
-    def __process_score(self, score):
-        '''
-        分数小于等于3的就是0, 大于3的就是1
-        :param score:
-        :return:
-        '''
-        score[score<=3] = 0
-        score[score>3] = 1
-        return score
 
 def test(model, dataloader, device):
     '''
@@ -107,6 +73,7 @@ if __name__ == "__main__":
     epoches = Parameter.ncf_config["epoches"]
     batch_size = Parameter.ncf_config["batch_size"]
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
+    print("Running on {}".format(device))
     kwargs = Parameter.lstm_config["kwargs"]
     lr = Parameter.ncf_config["lr"]
     train_dataset = ML1m(Parameter.train_path)

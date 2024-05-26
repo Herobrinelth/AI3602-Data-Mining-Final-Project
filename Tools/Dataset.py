@@ -2,11 +2,34 @@ import itertools
 import random
 import matplotlib.pyplot as plt
 import os
+import numpy as np
+import pandas as pd
+from torch.utils.data import Dataset
 import sys
 current_dir = os.path.dirname(os.path.abspath(__file__))
 parent_dir = os.path.dirname(current_dir)
 sys.path.append(parent_dir)
 import Tools.Parameter as Parameter
+
+class ML1m(Dataset):
+    def __init__(self, data_path, sep='::', header=None):
+        data = pd.read_csv(data_path, sep=sep, header=header, engine='python').to_numpy()[:, :3]
+        self.features = data[:, :2].astype(np.compat.long)-1
+        self.targets = self.__process_score(data[:, -1]).astype(np.float32)
+        self.feature_dims = np.max(self.features, axis=0)+1
+        self.user_field_idx = np.array((0,), dtype=np.compat.long)
+        self.item_field_idx = np.array((1,), dtype=np.compat.long)
+
+    def __getitem__(self, idx):
+        return self.features[idx], self.targets[idx]
+
+    def __len__(self):
+        return self.features.shape[0]
+
+    def __process_score(self, score):
+        score[score<=3] = 0
+        score[score>3] = 1
+        return score
 
 def LoadRatingDataset(datafile):
     """

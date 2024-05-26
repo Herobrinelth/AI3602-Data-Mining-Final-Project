@@ -1,6 +1,7 @@
 # input file path
 rating_path = 'dataset/ml-1m/ratings.dat'
 movies_path = 'dataset/ml-1m/movies.dat'
+user_path = 'dataset/ml-1m/users.dat'
 seperator = '::'
 
 # output root
