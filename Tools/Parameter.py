@@ -21,13 +21,9 @@ EM_mu_sigma_alpha_path = 'Output/EM_mu_sigma_alpha.pkl'
 
 # NCF path
 model_path = "Output/NCFmodel.pkl"
-train_eer_path = "Output/train_error.pkl"
-test_eer_path = "Output/test_error.pkl"
 
 # LSTM path
 lstm_path = "Output/LSTM.pkl"
-train_eer_lstm = "Output/train_lstm.pkl"
-test_eer_lstm = "Output/test_lstm.pkl"
 
 # movie similaritem path
 movie_similarity_matrices_path = 'Output/MovieSimMat.pkl'

@@ -11,6 +11,7 @@ parent_dir = os.path.dirname(current_dir)
 sys.path.append(parent_dir)
 from DNN.model import NCF
 import Tools.Parameter as Parameter
+from Tools.Evaluate import Plot_errors
 from Tools.Dataset import ML1m
 
 np.random.seed(0)
@@ -100,7 +101,4 @@ if __name__ == "__main__":
         value_rmse, value_mae, value_auc = test(model, dataloader_test, device)
         test_error.append((value_rmse, value_mae, value_auc))
     torch.save(model, Parameter.model_path)
-    with open(Parameter.train_eer_path, 'wb') as f:
-        pickle.dump(train_error, f, pickle.HIGHEST_PROTOCOL)
-    with open(Parameter.test_eer_path, 'wb') as f:
-        pickle.dump(test_error, f, pickle.HIGHEST_PROTOCOL)
+    Plot_errors(train_error, test_error, Parameter.output_root, 'train_NCF.jpg', 'test_NCF.jpg')

@@ -12,6 +12,7 @@ sys.path.append(parent_dir)
 from DNN.model import LSTM
 import Tools.Parameter as Parameter
 from Tools.Dataset import ML1m
+from Tools.Evaluate import Plot_errors
  
 np.random.seed(0)
 torch.manual_seed(0)
@@ -70,12 +71,12 @@ def train(model, dataloader, opt, criterion, device, log_interval=100):
             total_loss = 0
 
 if __name__ == "__main__":
-    epoches = Parameter.ncf_config["epoches"]
-    batch_size = Parameter.ncf_config["batch_size"]
+    epoches = Parameter.lstm_config["epoches"]
+    batch_size = Parameter.lstm_config["batch_size"]
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     print("Running on {}".format(device))
     kwargs = Parameter.lstm_config["kwargs"]
-    lr = Parameter.ncf_config["lr"]
+    lr = Parameter.lstm_config["lr"]
     train_dataset = ML1m(Parameter.train_path)
     test_dataset = ML1m(Parameter.test_path)
     dataloader_train = DataLoader(dataset=train_dataset, shuffle=True, batch_size=batch_size)
@@ -98,7 +99,4 @@ if __name__ == "__main__":
         value_rmse, value_mae, value_auc = test(model, dataloader_test, device)
         test_error.append((value_rmse, value_mae, value_auc))
     torch.save(model, Parameter.lstm_path)
-    with open(Parameter.train_eer_lstm, 'wb') as f:
-        pickle.dump(train_error, f, pickle.HIGHEST_PROTOCOL)
-    with open(Parameter.test_eer_lstm, 'wb') as f:
-        pickle.dump(test_error, f, pickle.HIGHEST_PROTOCOL)
+    Plot_errors(train_error, test_error, Parameter.output_root, 'train_LSTM.jpg', 'test_LSTM.jpg')
