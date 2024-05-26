@@ -107,6 +107,7 @@ if __name__ == "__main__":
     epoches = Parameter.ncf_config["epoches"]
     batch_size = Parameter.ncf_config["batch_size"]
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
+    print("Running on {}".format(device))
     kwargs = Parameter.ncf_config["kwargs"]
     lr = Parameter.ncf_config["lr"]
     train_dataset = ML1m(Parameter.train_path)

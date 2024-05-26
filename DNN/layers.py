@@ -14,7 +14,7 @@ class Feature_Embedding(nn.Module):
         super(Feature_Embedding, self).__init__()
         self.device = device
         self.embedding = nn.Embedding(sum(feature_dims), embedding_dim=embed_size).to(self.device)
-        self.offset = np.array([0, *np.cumsum(feature_dims)[:-1]], dtype=np.long)
+        self.offset = np.array([0, *np.cumsum(feature_dims)[:-1]], dtype=np.compat.long)
         torch.nn.init.xavier_uniform_(self.embedding.weight.data)
 
     def forward(self, data):
@@ -35,7 +35,7 @@ class Feature_Embedding_Sum(nn.Module):
         self.device = device
         self.embedding = nn.Embedding(sum(feature_dims), out_dim).to(self.device)
         self.bias = nn.Parameter(torch.zeros((out_dim,))).to(self.device)
-        self.offset = np.array([0, *np.cumsum(feature_dims)[:-1]], dtype=np.long)
+        self.offset = np.array([0, *np.cumsum(feature_dims)[:-1]], dtype=np.compat.long)
 
     def forward(self, data):
         '''
