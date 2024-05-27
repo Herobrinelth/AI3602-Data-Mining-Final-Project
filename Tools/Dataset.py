@@ -5,6 +5,7 @@ import os
 import numpy as np
 import pandas as pd
 from torch.utils.data import Dataset
+from sklearn.preprocessing import LabelEncoder
 import sys
 current_dir = os.path.dirname(os.path.abspath(__file__))
 parent_dir = os.path.dirname(current_dir)
@@ -81,7 +82,7 @@ class DivideData(object):
         self.trainset = []
         self.testset = []
 
-    def generate_data_set(self, filename, pivot=0.8):
+    def generate_data_set(self, filename, train_path, test_path, pivot=0.8):
         a, b = 0, 0
         for line in self.loadfile(filename):
             if random.random() < pivot:
@@ -91,8 +92,8 @@ class DivideData(object):
                 self.testset.append(line)
                 b += 1
 
-        self.export_file(Parameter.train_path, self.trainset)
-        self.export_file(Parameter.test_path, self.testset)
+        self.export_file(train_path, self.trainset)
+        self.export_file(test_path, self.testset)
 
     @staticmethod
     def loadfile(filename):
@@ -108,9 +109,38 @@ class DivideData(object):
                 f.write(line)
                 f.write("\n")
 
+def get_cluster_movie():
+    genres = []
+    movieids=[]
+    with open(Parameter.movies_path, encoding='gbk', errors='ignore') as f:
+        lines = f.readlines()
+        for line in lines:
+            movieid, _, genre = line.strip('\r\n').split(Parameter.seperator)
+            genres.append(genre)
+            movieids.append(movieid)
+    label_encoder = LabelEncoder()
+    encoded_list = label_encoder.fit_transform(genres)
+    print("New classes ranging from {} to {}.".format(np.min(encoded_list), np.max(encoded_list)))
+    dic={}
+    for i in range(len(encoded_list)):
+        dic.update({movieids[i]:encoded_list[i]})
+    with open(Parameter.rating_path, 'r') as infile:
+        lines = infile.readlines()
+
+    with open(Parameter.cluster_path, 'w') as outfile:
+        for i, line in enumerate(lines):
+            line = line.strip()
+            user, movie, score, timestamp = line.split('::')
+            movie = str(dic[movie])
+            new_line = f'{user}::{movie}::{score}::{timestamp}\n'
+            outfile.write(new_line)
+    func = DivideData()
+    func.generate_data_set(Parameter.cluster_path, Parameter.train_cluster, Parameter.test_cluster)
+
 if __name__ == '__main__':
     test = LoadRatingDataset_mat(Parameter.rating_path)
     plt.plot(test)
     plt.savefig(os.path.join(Parameter.output_root, "test.jpg"), format='jpg')
     plt.violinplot(test, showmedians=True)
     plt.savefig(os.path.join(Parameter.output_root, "test_violin.jpg"), format='jpg')
+    get_cluster_movie()

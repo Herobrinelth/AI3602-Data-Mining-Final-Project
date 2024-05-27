@@ -1,5 +1,6 @@
 # input file path
 rating_path = 'dataset/ml-1m/ratings.dat'
+cluster_path = 'dataset/ml-1m/ratings_cluster.dat'
 movies_path = 'dataset/ml-1m/movies.dat'
 user_path = 'dataset/ml-1m/users.dat'
 seperator = '::'
@@ -14,6 +15,8 @@ ucf_recom_movies = 10
 # split file path
 train_path = 'dataset/ml-1m/train_set.dat'
 test_path = "dataset/ml-1m/test_set.dat"
+train_cluster = 'dataset/ml-1m/train_set_cluster.dat'
+test_cluster = 'dataset/ml-1m/test_set_cluster.dat'
 
 # cluster path
 reduced_mat_path = 'Output/reduced_mat.pkl'
@@ -21,6 +24,7 @@ EM_mu_sigma_alpha_path = 'Output/EM_mu_sigma_alpha.pkl'
 
 # NCF path
 model_path = "Output/NCFmodel.pkl"
+model_cluster = "Output/NCFmodel_cluster.pkl"
 early_stop = 5
 
 # LSTM path
@@ -54,5 +58,17 @@ lstm_config = {
         'embed_size':256,
         'dropout':0.1,
         'gru_layers':2
+    }
+}
+
+# NCF cluster configuration
+ncfclu_config = {
+    "epoches": 50,
+    "lr": 1e-3,
+    "batch_size": 256,
+    "kwargs": {
+        'embed_size':128,
+        'hidden_nbs':[512, 1024, 512],
+        'dropout':0.1
     }
 }
