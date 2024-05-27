@@ -37,7 +37,7 @@ user_similarity_matrices_path = "Output/UserSimMat.pkl"
 ncf_config = {
     "epoches": 50,
     "lr": 1e-3,
-    "batch_size": 1024,
+    "batch_size": 512,
     "kwargs": {
         'embed_size':128,
         'hidden_nbs':[512, 1024, 512],
