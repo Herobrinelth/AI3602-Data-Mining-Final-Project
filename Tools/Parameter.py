@@ -21,7 +21,7 @@ EM_mu_sigma_alpha_path = 'Output/EM_mu_sigma_alpha.pkl'
 
 # NCF path
 model_path = "Output/NCFmodel.pkl"
-early_stop = 10
+early_stop = 5
 
 # LSTM path
 lstm_path = "Output/LSTM.pkl"
@@ -37,7 +37,7 @@ user_similarity_matrices_path = "Output/UserSimMat.pkl"
 ncf_config = {
     "epoches": 50,
     "lr": 1e-3,
-    "batch_size": 512,
+    "batch_size": 256,
     "kwargs": {
         'embed_size':128,
         'hidden_nbs':[512, 1024, 512],
