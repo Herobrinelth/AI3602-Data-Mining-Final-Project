@@ -12,8 +12,8 @@ num_sim_user = 25
 ucf_recom_movies = 10
 
 # split file path
-train_path = 'dataset/train_set.dat'
-test_path = "dataset/test_set.dat"
+train_path = 'dataset/ml-1m/train_set.dat'
+test_path = "dataset/ml-1m/test_set.dat"
 
 # cluster path
 reduced_mat_path = 'Output/reduced_mat.pkl'
