@@ -44,7 +44,7 @@ def LoadRatingDataset(datafile):
         for line in itertools.islice(f, 0, None):
             user, movie, rate = line.strip('\r\n').split(Parameter.seperator)[:3]
             ratings.setdefault(user, {})
-            ratings[user][movie] = int(rate)
+            ratings[user][movie] = int(float(rate))
     return ratings
 
 def LoadRatingDataset_mat(datafile):
