@@ -96,7 +96,7 @@ if __name__ == '__main__':
         if total != 0:
             accurate += (hit/total)
         recall += (hit/10)
-    with open(os.path.join(Parameter.output_root, "ml-1m", "output_UBCF.txt"), "w") as file:
+    with open(os.path.join(Parameter.output_root, Parameter.dataset, "output_UBCF.txt"), "w") as file:
         with contextlib.redirect_stdout(file):
             print(type(ucf).__name__)
             print(len(test_rating.keys()))

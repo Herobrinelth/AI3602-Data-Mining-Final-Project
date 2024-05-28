@@ -111,4 +111,4 @@ if __name__ == "__main__":
         if count == Parameter.early_stop:
             print("Early stop at {} epoch of {}".format(e+1, epoches))
             break
-    Plot_errors(train_error, test_error, os.path.join(Parameter.output_root, 'ml-1m'), 'train_NCF.jpg', 'test_NCF.jpg')
+    Plot_errors(train_error, test_error, os.path.join(Parameter.output_root, Parameter.dataset), 'train_NCF.jpg', 'test_NCF.jpg')

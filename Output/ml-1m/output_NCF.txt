@@ -1,4 +1,4 @@
-Output/NCFmodel.pkl
+Output/ml-1m/NCFmodel.pkl
 acc cnt 719.4152269853327
 accurate 0.1191282045016282
 recall cnt 194.00000000000173

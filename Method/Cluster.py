@@ -46,7 +46,7 @@ class BagUserCluster:
 
     def recommand(self, test_rating):
         print("Recommanding...")
-        with open(os.path.join(Parameter.output_root, 'ml-1m', "output_cluster.txt"), "w") as file:
+        with open(os.path.join(Parameter.output_root, Parameter.dataset, "output_cluster.txt"), "w") as file:
             with contextlib.redirect_stdout(file):
                 user_film = np.zeros((self.usernum, self.movienum))
                 for user in test_rating.keys():
