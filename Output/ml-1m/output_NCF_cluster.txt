@@ -1,0 +1,5 @@
+Output/ml-1m/NCFmodel_cluster.pkl
+acc cnt 963.8144487013086
+accurate 0.15962478448183315
+recall cnt 182.6900000000028
+recall 0.030256707519046508
