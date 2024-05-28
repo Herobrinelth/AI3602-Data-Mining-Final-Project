@@ -12,3 +12,6 @@ bash Scripts/SimilarItem.sh
 
 # Movie Based LSTM
 bash Scripts/LSTM.sh
+
+# NCF + cluster 
+bash Scripts/NCF_cluster.sh
