@@ -144,3 +144,5 @@ if __name__ == '__main__':
     plt.violinplot(test, showmedians=True)
     plt.savefig(os.path.join(Parameter.output_root, "test_violin.jpg"), format='jpg')
     get_cluster_movie()
+    # func = DivideData()
+    # func.generate_data_set('dataset/yelp/yelp_reviews.dat', 'dataset/yelp/train_set.dat', 'dataset/yelp/test_set.dat')

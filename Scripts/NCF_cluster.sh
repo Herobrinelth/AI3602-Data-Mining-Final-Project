@@ -1,5 +1,5 @@
-echo "Data preprocessing"
-python Tools/Dataset.py
+# echo "Data preprocessing"
+# python Tools/Dataset.py
 
 echo "Begin to train NCF + cluster model..."
 python Method/NCF_train_cluster.py

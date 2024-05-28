@@ -61,7 +61,7 @@ if __name__ == "__main__":
         if total != 0:
             accurate += (hit/total)
         recall += (hit/100)
-    with open(os.path.join(Parameter.output_root, "output_NCF.txt"), "w") as file:
+    with open(os.path.join(Parameter.output_root, 'ml-1m', "output_NCF.txt"), "w") as file:
         with contextlib.redirect_stdout(file):
             print(Parameter.model_path)
             print("acc cnt", accurate)

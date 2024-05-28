@@ -127,7 +127,7 @@ if __name__ == '__main__':
         if total != 0:
             accurate += (hit / total)
         recall += (hit / 10)
-    with open(os.path.join(Parameter.output_root, "output_hash.txt"), "w") as file:
+    with open(os.path.join(Parameter.output_root, "ml-1m", "output_hash.txt"), "w") as file:
         with contextlib.redirect_stdout(file):
             print(len(test_rating.keys()))
             print("acc cnt",accurate)

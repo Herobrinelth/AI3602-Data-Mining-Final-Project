@@ -1,5 +1,5 @@
-echo "Data preprocessing"
-python Tools/Dataset.py
+# echo "Data preprocessing"
+# python Tools/Dataset.py
 
 echo "Begin to train LSTM model..."
 python Method/LSTM_train.py

@@ -19,23 +19,23 @@ train_cluster = 'dataset/ml-1m/train_set_cluster.dat'
 test_cluster = 'dataset/ml-1m/test_set_cluster.dat'
 
 # cluster path
-reduced_mat_path = 'Output/reduced_mat.pkl'
-EM_mu_sigma_alpha_path = 'Output/EM_mu_sigma_alpha.pkl'
+reduced_mat_path = 'Output/ml-1m/reduced_mat.pkl'
+EM_mu_sigma_alpha_path = 'Output/ml-1m/EM_mu_sigma_alpha.pkl'
 
 # NCF path
-model_path = "Output/NCFmodel.pkl"
-model_cluster = "Output/NCFmodel_cluster.pkl"
+model_path = "Output/ml-1m/NCFmodel.pkl"
+model_cluster = "Output/ml-1m/NCFmodel_cluster.pkl"
 early_stop = 5
 
 # LSTM path
-lstm_path = "Output/LSTM.pkl"
+lstm_path = "Output/ml-1m/LSTM.pkl"
 
 # movie similaritem path
-movie_similarity_matrices_path = 'Output/MovieSimMat.pkl'
-movie_signature_path = 'Output/MovieSignature.pkl'
+movie_similarity_matrices_path = 'Output/ml-1m/MovieSimMat.pkl'
+movie_signature_path = 'Output/ml-1m/MovieSignature.pkl'
 
 # user similaritem path
-user_similarity_matrices_path = "Output/UserSimMat.pkl"
+user_similarity_matrices_path = "Output/ml-1m/UserSimMat.pkl"
 
 # NCF configuration
 ncf_config = {
