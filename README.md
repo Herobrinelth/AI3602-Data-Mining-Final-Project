@@ -7,7 +7,7 @@
 
 * Data
   
-  * [MovieLens 1M Dataset](https://grouplens.org/datasets/movielens/)
+  * [MovieLens 1M Dataset](https://grouplens.org/datasets/movielens/) Highly recommanded to utilize.
   * [Recipe Dataset](https://www.kaggle.com/datasets/shuyangli94/food-com-recipes-and-user-interactions?select=RAW_interactions.csv) Too large to utilize.
   * [Yelp Dataset](https://github.com/Yelp/dataset-examples?tab=readme-ov-file) Too large to utilize.
 
