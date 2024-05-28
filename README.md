@@ -18,6 +18,7 @@
   * Cluster (PCA dimension reduction & EM algorithm)
   * Neutral Collaborative Filtering
   * LSTM
+  * Movie clustering & Neutral Collaborative Filtering
 
 * Usage
 
