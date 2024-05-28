@@ -16,8 +16,8 @@ import Tools.Evaluate as Evaluate
 class SimItem:
     def __init__(self, train_rating, pretrain=False):
         self.hashnum = 30
-        self.maxsingle = 6039
-        self.movienum = 3952
+        self.maxsingle = Parameter.user_number
+        self.movienum = Parameter.object_number
         self.like_matrix = [[] for _ in range(self.movienum)]
         for user in train_rating.keys():
             for film, score in train_rating[user].items():

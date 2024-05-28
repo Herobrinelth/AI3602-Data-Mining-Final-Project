@@ -15,8 +15,8 @@ import Tools.Dataset as Dataset
 
 class BagUserCluster:
     def __init__(self, train_rating):
-        self.usernum = 6040
-        self.movienum = 3952
+        self.usernum = Parameter.user_number
+        self.movienum = Parameter.object_number
         self.k = 5
         self.user_film_mat = np.zeros((self.usernum,self.movienum))
         self.reduced_dim = 1000

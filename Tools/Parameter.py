@@ -5,6 +5,18 @@ output_root = 'Output'
 dataset_root = 'dataset'
 dataset = 'ml-1m' # ['ml-1m', 'yelp', 'recipe']
 seperator = '::'
+user_number_dic = {
+    'ml-1m':6040,
+    'yelp':1987925,
+    'recipe':None,
+    'ml-1m-cluster':6040
+}
+object_number_dic = {
+    'ml-1m':3952,
+    'yelp':150346,
+    'recipe':None,
+    'ml-1m-cluster':300
+}
 
 # input file path
 rating_path = os.path.join(dataset_root, dataset, 'ratings.dat')
@@ -12,6 +24,9 @@ cluster_path = os.path.join(dataset_root, dataset, 'ratings_cluster.dat')
 movies_path = os.path.join(dataset_root, dataset, 'movies.dat')
 user_path = os.path.join(dataset_root, dataset, 'users.dat')
 
+# user & object number
+user_number = user_number_dic['ml-1m']
+object_number = object_number_dic['ml-1m']
 
 # UserCF parameter
 num_sim_user = 25

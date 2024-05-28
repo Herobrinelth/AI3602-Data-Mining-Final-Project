@@ -15,6 +15,8 @@ import Tools.Parameter as Parameter
 class ML1m(Dataset):
     def __init__(self, data_path, sep='::', header=None):
         data = pd.read_csv(data_path, sep=sep, header=header, engine='python').to_numpy()[:, :3]
+        print("User ID ranging from {} to {}, object ID ranging from {} to {}.".format(np.min(data[:, 0]), np.max(data[:, 0]), 
+                                                                                       np.min(data[:, 1]), np.max(data[:, 1])))
         self.features = data[:, :2].astype(np.compat.long)-1
         self.targets = self.__process_score(data[:, -1]).astype(np.float32)
         self.feature_dims = np.max(self.features, axis=0)+1

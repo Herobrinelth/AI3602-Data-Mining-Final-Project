@@ -15,15 +15,15 @@ class NCFrecommand:
     def __init__(self, model_path):
         print("Reading checkpoint from {}".format(model_path))
         self.model = torch.load(model_path).to(device)
-        self.movienum = 300
-        self.usernum = 6040
+        self.movienum = Parameter.object_number_dic['ml-1m-cluster']
+        self.usernum = Parameter.user_number
 
     def recommand(self, user:int):
         """
         :param user: integer, starting from 1 to 6040
         :return: top-10 recommand movie [int,int,...,int] from 1 to 3592
         """
-        user_movie = np.zeros((6040,2), dtype=np.compat.long)
+        user_movie = np.zeros((Parameter.user_number,2), dtype=np.compat.long)
         for i in range(self.movienum):
             user_movie[i][0] = user-1
             user_movie[i][1] = i
